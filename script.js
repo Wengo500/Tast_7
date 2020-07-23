@@ -55,13 +55,20 @@ const objDifferences = (o1, o2) => {
 
         for (const key in obj1) {
             if (obj1.hasOwnProperty(key)) {
+                if (Object.keys(obj1).length === Object.keys(obj2).length) {
 
-                if (obj1[key] !== null && typeof obj1[key] === 'object') {
+                    if (obj1[key] !== null && typeof obj1[key] === 'object') {
 
-                    objTest(obj1[key], obj2[key]);
-                } else if (obj1[key] !== obj2[key]) {
-                    diff++;
-                };
+                        objTest(obj1[key], obj2[key]);
+                    } else if (obj1[key] !== obj2[key]) {
+                        diff++;
+                    };
+                } else {
+                    console.log('Different object length ');
+                    break;
+                }
+
+
             };
         };
     };
