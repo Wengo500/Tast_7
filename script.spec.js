@@ -1,7 +1,7 @@
 describe('funcions', () => {
-    describe('maxDepth', () => {
+    describe('notGlobally', () => {
         it('should show max depth of object', () => {
-            expect(maxDepth(car)).to.equal(4);
+            expect(notGlobally(car)).to.equal(4);
         });
     });
 

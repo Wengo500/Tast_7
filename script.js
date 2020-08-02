@@ -12,6 +12,7 @@ const car = {
 
             protector: {
                 height: 6,
+
             },
         },
     },
@@ -36,17 +37,24 @@ const bicycle = {
     },
 };
 
-const maxDepth = (object, values) => {
+const notGlobally = (p) => {
+    let depth = 0;
+    const maxDepth = (object) => {
 
-    if (typeof object !== "object" || object === null) {
-        return 0;
+        for (const key in object) {
+            if (object.hasOwnProperty(key)) {
+                if (object !== null && typeof object === 'object') {
+                    depth++;
+                }
+            }
+        }
+        return depth;
     };
 
-    values = Object.values(object);
-    return (Math.max(...values.map(value => maxDepth(value)))) + 1;
-
+    return maxDepth(p);
 };
-console.log(maxDepth(car));
+
+console.log(notGlobally(car));
 
 
 const objDifferences = (o1, o2) => {
@@ -65,10 +73,7 @@ const objDifferences = (o1, o2) => {
                     };
                 } else {
                     console.log('Different object length ');
-                    break;
                 }
-
-
             };
         };
     };
