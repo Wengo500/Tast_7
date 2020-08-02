@@ -3,16 +3,19 @@ const car = {
     weight: 1500,
     color: 'Red',
 
-    wheel: {
-        weight: 10,
+    door: {
+        weight: 7,
 
-        tire: {
-            color: 'black,',
-            weight: 5,
+        wheel: {
+            weight: 10,
 
-            protector: {
-                height: 6,
+            tire: {
+                color: 'black,',
+                weight: 5,
 
+                protector: {
+                    height: 6,
+                },
             },
         },
     },
@@ -20,42 +23,52 @@ const car = {
 
 const bicycle = {
     maxSpeed: 40,
-    weight: 16,
+    weight: 15,
     color: 'Red',
 
-    wheel: {
-        weight: 2,
+    door: {
+        weight: 7,
 
-        tire: {
-            color: 'black,',
-            weight: 1,
+        wheel: {
+            weight: 2,
 
-            protector: {
-                height: 5,
+            tire: {
+                color: 'black,',
+                weight: 5,
+
+                protector: {
+                    height: 6,
+                },
             },
         },
     },
 };
 
 const notGlobally = (p) => {
+
     let depth = 0;
+    let max = 0;
     const maxDepth = (object) => {
 
         for (const key in object) {
             if (object.hasOwnProperty(key)) {
-                if (object !== null && typeof object === 'object') {
+                if (object[key] !== null && typeof object[key] === 'object') {
                     depth++;
+
+                    maxDepth(object[key]);
+                    if (max <= depth) {
+                        max = depth;
+                    }
+                    depth = 0;
                 }
             }
         }
-        return depth;
-    };
-
+        return max;
+    }
     return maxDepth(p);
 };
 
 console.log(notGlobally(car));
-
 
 const objDifferences = (o1, o2) => {
     let diff = 0;

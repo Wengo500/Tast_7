@@ -8,7 +8,7 @@ describe('funcions', () => {
     describe('objDifferences', () => {
         it('the number of differences in the two objects', () => {
 
-            expect(objDifferences(car, bicycle)).to.equal(5);
+            expect(objDifferences(car, bicycle)).to.equal(3);
         });
     });
 });
