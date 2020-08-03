@@ -45,16 +45,19 @@ const bicycle = {
 };
 
 const maxDepth = (object) => {
-    let depth = 0;
+    let depth = 1;
+
     for (const key in object) {
         if (object.hasOwnProperty(key)) {
             if (object[key] !== null && typeof object[key] === 'object') {
-
-                depth = maxDepth(object[key]);
-                depth++;
+                let newDepth = 1 + maxDepth(object[key]);
+                if (newDepth > depth) {
+                    depth = newDepth;
+                }
             }
         }
     }
+
     return depth;
 };
 
