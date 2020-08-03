@@ -44,31 +44,22 @@ const bicycle = {
     },
 };
 
-const notGlobally = (p) => {
-
+const maxDepth = (object) => {
     let depth = 0;
-    let max = 0;
-    const maxDepth = (object) => {
+    for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+            if (object[key] !== null && typeof object[key] === 'object') {
 
-        for (const key in object) {
-            if (object.hasOwnProperty(key)) {
-                if (object[key] !== null && typeof object[key] === 'object') {
-                    depth++;
-
-                    maxDepth(object[key]);
-                    if (max <= depth) {
-                        max = depth;
-                    }
-                    depth = 0;
-                }
+                depth = maxDepth(object[key]);
+                depth++;
             }
         }
-        return max;
     }
-    return maxDepth(p);
+    return depth;
 };
 
-console.log(notGlobally(car));
+console.log(maxDepth(car));
+
 
 const objDifferences = (o1, o2) => {
     let diff = 0;
